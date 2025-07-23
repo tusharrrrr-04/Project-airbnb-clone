@@ -1,0 +1,63 @@
+<%- include('../partials/head') %>
+  </head>
+
+  <body>
+    <%- include('../partials/nav') %>
+      <main class="container mx-auto px-4 py-12 max-w-7xl">
+        <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">
+          Discover Your Next Stay
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <% registeredHomes.forEach(home=> { %>
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div class="relative">
+                <img src="<%= home.photo %>" alt="<%= home.houseName %>" class="w-full h-56 object-cover">
+                <div class="absolute top-4 right-4">
+                  <%- include('../partials/favourite', {home: home}) %>
+                </div>
+              </div>
+
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  <%= home.houseName %>
+                </h3>
+
+                <div class="flex items-center text-gray-600 mb-4">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <%= home.location %>
+                </div>
+
+                <div class="flex justify-between items-center mb-4">
+                  <div class="flex items-center">
+                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path fill-rule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <span class="ml-1 text-gray-700">
+                      <%= home.rating %>
+                    </span>
+                  </div>
+                  <span class="text-xl font-bold text-red-500">$<%= home.price %> <span
+                        class="text-sm font-normal text-gray-500">/ night</span></span>
+                </div>
+
+                <a href="/homes/<%= home._id %>"
+                  class="block w-full text-center py-3 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-200">
+                  View Details
+                </a>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </main>
+  </body>
+
+  </html>

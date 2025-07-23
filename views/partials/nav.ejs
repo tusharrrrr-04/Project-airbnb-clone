@@ -1,0 +1,68 @@
+<header class="bg-red-500 text-white shadow-lg">
+  <nav class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <!-- Logo Section -->
+      <div class="flex items-center">
+        <a href="/"
+          class="text-2xl font-bold <%= currentPage === 'index' ? 'text-white' : 'text-red-100' %> hover:text-white transition duration-300">
+          <span class="flex items-center">
+            <svg class="h-8 w-8 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L2 19h20L12 2zm0 3l6.38 12H5.62L12 5z" />
+            </svg>
+            AirBnB
+          </span>
+        </a>
+      </div>
+
+      <!-- Main Navigation -->
+      <div class="hidden md:flex space-x-1">
+        <% if (isLoggedIn) { %>
+          <% if (user && user.userType === 'guest') { %>
+            <a href="/homes"
+              class="<%= currentPage === 'Home' ? 'bg-red-600' : 'hover:bg-red-400' %> px-4 py-2 rounded-full text-sm font-medium transition duration-300">
+              Homes
+            </a>
+            <a href="/favourites"
+              class="<%= currentPage === 'favourites' ? 'bg-red-600' : 'hover:bg-red-400' %> px-4 py-2 rounded-full text-sm font-medium transition duration-300">
+              Favourites
+            </a>
+            <a href="/bookings"
+              class="<%= currentPage === 'bookings' ? 'bg-red-600' : 'hover:bg-red-400' %> px-4 py-2 rounded-full text-sm font-medium transition duration-300">
+              Bookings
+            </a>
+          <% } else { %>
+            <a href="/host/host-home-list"
+              class="<%= currentPage === 'bookings' ? 'bg-red-600' : 'hover:bg-red-400' %> px-4 py-2 rounded-full text-sm font-medium transition duration-300">
+              Host Homes
+            </a>
+            <a href="/host/add-home"
+              class="<%= currentPage === 'bookings' ? 'bg-red-600' : 'hover:bg-red-400' %> px-4 py-2 rounded-full text-sm font-medium transition duration-300">
+              Add Home
+            </a>
+          <% } %>
+        <% } %>
+      </div>
+
+      <!-- Auth Section -->
+      <div class="flex items-center space-x-2">
+        <% if (!isLoggedIn) { %>
+          <a href="/signup"
+            class="px-4 py-2 rounded-full text-sm font-medium border border-white hover:bg-white hover:text-red-500 transition duration-300">
+            Sign Up
+          </a>
+          <a href="/login"
+            class="px-4 py-2 rounded-full text-sm font-medium bg-white text-red-500 hover:bg-red-100 transition duration-300">
+            Login
+          </a>
+          <% } else { %>
+            <form action="/logout" method="POST">
+              <button type="submit"
+                class="px-4 py-2 rounded-full text-sm font-medium border border-white hover:bg-white hover:text-red-500 transition duration-300">
+                Logout
+              </button>
+            </form>
+            <% } %>
+      </div>
+    </div>
+  </nav>
+</header>
